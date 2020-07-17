@@ -39,4 +39,13 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        if node is not None: #checking to make sure list is not empty
+            current = node.next_node #place holder for current next_node value
+            node.next_node = prev #setting pointer of next_node to place holder "prev"
+            self.reverse_list(current, node) #calling fn passing current value in as node, 
+                # comparing = None, setting next_node to current ---- also passing in
+                #current node and setting next_node pointer to prev --- then calling fn again
+
+        else:
+            self.head = prev #list only has 1 thing in it...
+
