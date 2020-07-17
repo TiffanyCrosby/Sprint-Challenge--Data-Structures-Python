@@ -1,4 +1,7 @@
 import time
+import sys
+sys.path[:0] = ['binary_search_tree']
+from binary_search_tree import BSTNode
 
 start_time = time.time()
 
@@ -13,16 +16,41 @@ f.close()
 duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
 
-end_time = time.time()
-print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
+
+
+# #using BST will allow us to get a O(log(n)) runtime complexity approx runtime is 0.112 secs...
+# names_list = BSTNode('') #made a place for first list of names to go into for comparison
+
+# for value in names_1:
+#     names_list.insert(value)
+
+# for value in names_2:
+#     if names_list.contains(value):
+#         duplicates.append(value)
+
+# end_time = time.time()
+# print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+# print (f"runtime: {end_time - start_time} seconds")
 
 # ---------- Stretch Goal -----------
 # Python has built-in tools that allow for a very efficient approach to this problem
 # What's the best time you can accomplish?  Thare are no restrictions on techniques or data
 # structures, but you may not import any additional libraries that you did not write yourself.
+
+names_list2 = {} #use dictionary
+
+for value in names_1:
+    names_list2[value] = True
+
+for value in names_2:
+    if value in names_list2: #comparing key:vlaue pairs in dictionary...if they match then will send to duplicate list. this line is a truthy/falsy line.
+        duplicates.append(value)
+
+end_time = time.time()
+print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print (f"runtime: {end_time - start_time} seconds")
