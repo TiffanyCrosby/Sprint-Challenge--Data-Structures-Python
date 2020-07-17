@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path[:0] = ['ring_buffer']
 from ring_buffer import RingBuffer
 
 class RingBufferTests(unittest.TestCase):
